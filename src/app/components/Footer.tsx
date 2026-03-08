@@ -25,7 +25,7 @@ export function Footer() {
               <div className="space-y-3">
                 <a href="tel:+905551234567" className="flex items-center gap-2 text-[#F8FAFC]/70 hover:text-[#CFA670] transition-colors">
                   <Phone size={18} />
-                  <span>+90 555 123 45 67</span>
+                  <span>+90 543 418 90 34</span>
                 </a>
                 <a href="mailto:info@yusufalisoykan.com" className="flex items-center gap-2 text-[#F8FAFC]/70 hover:text-[#CFA670] transition-colors">
                   <Mail size={18} />

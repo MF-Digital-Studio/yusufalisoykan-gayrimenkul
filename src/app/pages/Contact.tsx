@@ -3,6 +3,11 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 
+const GOOGLE_MAPS_LOCATION_URL =
+  "https://www.google.com/maps/dir//RE%2FMAX+%C3%9Csk%C3%BCdar+%7C+Yusuf+Soykan+-+Emlak+Dan%C4%B1%C5%9Fman%C4%B1,+Ac%C4%B1badem,+218%2FA+Alparslan+i%C5%9F+merkezi,+34660+%C3%9Csk%C3%BCdar%2F%C4%B0stanbul/@41.0495772,29.0809008,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x14cac94a19f63edb:0x9c21d28c81b96d58!2m2!1d29.0545305!2d41.0128811?entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D";
+const GOOGLE_MAPS_EMBED_URL =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.5655608708403!2d29.054530500000002!3d41.0128811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac94a19f63edb%3A0x9c21d28c81b96d58!2zUkUvTUFYIMOcc2vDvGRhciB8IFl1c3VmIFNveWthbiAtIEVtbGFrIERhbsSxxZ9tYW7EsQ!5e0!3m2!1str!2str!4v1773010421168!5m2!1str!2str";
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -176,7 +181,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#CFA670]/30 rounded-lg text-[#F8FAFC] focus:outline-none focus:border-[#CFA670] transition-colors"
-                      placeholder="+90 555 123 45 67"
+                      placeholder="+90 555 123 1223"
                     />
                   </div>
 
@@ -249,7 +254,7 @@ export function Contact() {
                       </div>
                       <div>
                         <div className="text-sm text-[#F8FAFC]/60 mb-1">Telefon</div>
-                        <div className="text-lg text-[#F8FAFC]">+90 555 123 45 67</div>
+                        <div className="text-lg text-[#F8FAFC]">+90 543 418 90 34</div>
                       </div>
                     </a>
 
@@ -273,8 +278,7 @@ export function Contact() {
                       <div>
                         <div className="text-sm text-[#F8FAFC]/60 mb-1">Adres</div>
                         <div className="text-lg text-[#F8FAFC]">
-                          Nişantaşı, Teşvikiye Cad. No: 123<br />
-                          Şişli, İstanbul, 34365
+                          Acıbadem, 218/A Alparslan iş merkezi,<br /> 34660 Üsküdar/İstanbul
                         </div>
                       </div>
                     </div>
@@ -291,32 +295,39 @@ export function Contact() {
                   </h3>
                   <div className="space-y-3 text-[#F8FAFC]/80">
                     <div className="flex justify-between">
-                      <span>Pazartesi - Cuma</span>
-                      <span className="text-[#CFA670]">09:00 - 19:00</span>
+                      <span>Pazartesi - Pazar</span>
+                      <span className="text-[#CFA670]">24 Saat</span>
                     </div>
-                    <div className="flex justify-between">
+                    {/* <div className="flex justify-between">
                       <span>Cumartesi</span>
                       <span className="text-[#CFA670]">10:00 - 16:00</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Pazar</span>
                       <span className="text-[#F8FAFC]/50">Randevuyla</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="bg-[#111111] rounded-lg overflow-hidden border border-[#CFA670]/20">
-                  <div className="aspect-video bg-[#0A0A0A] flex items-center justify-center relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#111111] to-[#0A0A0A] flex items-center justify-center">
-                      <div className="text-center">
-                        <MapPin className="w-16 h-16 text-[#CFA670] mx-auto mb-4" />
-                        <p className="text-[#F8FAFC]/60">Google Maps</p>
-                        <p className="text-sm text-[#F8FAFC]/40 mt-2">Nişantaşı, İstanbul</p>
-                      </div>
-                    </div>
+                {/* Map Preview */}
+                <a
+                  href={GOOGLE_MAPS_LOCATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Google Maps konumunu yeni sekmede ac"
+                  className="block bg-[#111111] rounded-lg overflow-hidden border border-[#CFA670]/20"
+                >
+                  <div className="aspect-video bg-[#0A0A0A] relative">
+                    <iframe
+                      src={GOOGLE_MAPS_EMBED_URL}
+                      title="RE/MAX Uskudar Ofis Konumu"
+                      className="absolute inset-0 h-full w-full"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                    />
                   </div>
-                </div>
+                </a>
               </div>
             </AnimatedSection>
           </div>
@@ -325,5 +336,4 @@ export function Contact() {
     </div>
   );
 }
-
 
