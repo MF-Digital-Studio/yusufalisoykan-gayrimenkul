@@ -163,14 +163,82 @@ Telefon: ${phone}
 Mesaj:
 ${message}`,
       html: `
-        <h2>Yeni iletişim formu mesajı</h2>
-        <p><strong>Ad Soyad:</strong> ${safeName}</p>
-        <p><strong>E-posta:</strong> ${safeEmail}</p>
-        <p><strong>Telefon:</strong> ${safePhone}</p>
-        <hr />
-        <p><strong>Mesaj:</strong></p>
-        <p>${safeMessage}</p>
-      `,
+    <div style="margin:0;padding:0;background-color:#f6f4ef;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
+      <div style="max-width:640px;margin:0 auto;padding:32px 20px;">
+        <div style="background:#ffffff;border:1px solid #e8e2d8;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.06);">
+          
+          <div style="padding:28px 32px;background:#111111;color:#d4ad6a;">
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;opacity:0.85;">
+              İletişim Formu
+            </div>
+            <h2 style="margin:10px 0 0;font-size:28px;line-height:1.2;font-weight:700;color:#d4ad6a;">
+              Yeni Mesaj
+            </h2>
+          </div>
+
+          <div style="padding:32px;">
+            <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#4b4b4b;">
+              Web sitesindeki iletişim formu üzerinden yeni bir mesaj gönderildi.
+            </p>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <div style="padding:16px 18px;border:1px solid #ece7de;border-radius:12px;background:#faf8f4;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#9a7a45;margin-bottom:6px;">
+                      Ad Soyad
+                    </div>
+                    <div style="font-size:15px;color:#1f1f1f;">${safeName}</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <div style="padding:16px 18px;border:1px solid #ece7de;border-radius:12px;background:#faf8f4;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#9a7a45;margin-bottom:6px;">
+                      E-posta
+                    </div>
+                    <div style="font-size:15px;color:#1f1f1f;">${safeEmail}</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <div style="padding:16px 18px;border:1px solid #ece7de;border-radius:12px;background:#faf8f4;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#9a7a45;margin-bottom:6px;">
+                      Telefon
+                    </div>
+                    <div style="font-size:15px;color:#1f1f1f;">${safePhone}</div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div style="padding:18px;border:1px solid #ece7de;border-radius:12px;background:#faf8f4;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#9a7a45;margin-bottom:10px;">
+                      Mesaj
+                    </div>
+                    <div style="font-size:15px;line-height:1.8;color:#1f1f1f;">
+                      ${safeMessage}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="padding:18px 32px;border-top:1px solid #eee7dc;background:#fcfbf8;">
+            <p style="margin:0;font-size:12px;line-height:1.6;color:#7a7a7a;">
+              Bu mesaj web sitesindeki iletişim formu üzerinden otomatik olarak iletildi.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
     });
 
     console.log("CONTACT API RESEND RESULT", JSON.stringify(result, null, 2));
