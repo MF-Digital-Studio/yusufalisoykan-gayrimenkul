@@ -1,7 +1,7 @@
 import whatsappPng from "../assets/whatsapp.png";
 
-const WHATSAPP_PHONE_NUMBER = "15551234567";
-const WHATSAPP_DEFAULT_MESSAGE = "Yusuf Soykan ile iletişime geçtiğiniz için teşekkürler. Size en kısa süre içerisinde dönüş yapacağım.";
+const WHATSAPP_PHONE_NUMBER = "5434189034";
+const WHATSAPP_DEFAULT_MESSAGE = "Merhaba, web siteniz üzerinden size ulaştım. Gayrimenkul danışmanlığı hakkında bilgi almak istiyorum.";
 
 const WHATSAPP_URL = `https://wa.me/${5434189034}?text=${encodeURIComponent(
   WHATSAPP_DEFAULT_MESSAGE
