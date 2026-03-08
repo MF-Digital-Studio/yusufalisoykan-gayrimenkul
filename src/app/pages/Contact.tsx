@@ -11,15 +11,67 @@ export function Contact() {
     message: "",
   });
 
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success">("idle");
+  const [botField, setBotField] = useState("");
+  const [formStartedAt, setFormStartedAt] = useState(Date.now());
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitStatus("success");
-    setTimeout(() => {
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      setSubmitStatus("idle");
-    }, 3000);
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const phone = formData.phone.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !phone || !message) {
+      setSubmitStatus("error");
+      setSubmitError("Lütfen zorunlu alanların tamamını doldurun.");
+      return;
+    }
+
+    if (botField) {
+      setSubmitStatus("error");
+      setSubmitError("Gönderim engellendi.");
+      return;
+    }
+
+    setSubmitStatus("submitting");
+    setSubmitError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+          website: botField,
+          formStartedAt,
+        }),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+      }
+
+      setSubmitStatus("success");
+      setTimeout(() => {
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setBotField("");
+        setFormStartedAt(Date.now());
+        setSubmitStatus("idle");
+      }, 3000);
+    } catch (error) {
+      setSubmitStatus("error");
+      setSubmitError(error instanceof Error ? error.message : "Mesaj gönderilemedi. Lütfen tekrar deneyin.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -70,6 +122,16 @@ export function Contact() {
                   Mesaj Gönderin
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  <input
+                    type="text"
+                    name="website"
+                    value={botField}
+                    onChange={(e) => setBotField(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                    aria-hidden="true"
+                  />
                   <div>
                     <label htmlFor="name" className="block text-[#F8FAFC]/90 mb-2">
                       Adınız Soyadınız *
@@ -136,9 +198,10 @@ export function Contact() {
 
                   <button
                     type="submit"
+                    disabled={submitStatus === "submitting"}
                     className="w-full bg-[#CFA670] text-[#0A0A0A] py-4 rounded-lg hover:bg-[#CFA670]/90 transition-all flex items-center justify-center gap-2 group"
                   >
-                    <span className="text-lg">Gönder</span>
+                    <span className="text-lg">{submitStatus === "submitting" ? "Gönderiliyor..." : "Gönder"}</span>
                     <Send size={20} className="group-hover:translate-x-1 transition-transform" />
                   </button>
 
@@ -147,8 +210,19 @@ export function Contact() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       className="bg-green-500/20 border border-green-500/50 text-green-400 px-4 py-3 rounded-lg text-center"
+                      aria-live="polite"
                     >
                       Mesajınız başarıyla gönderildi! En kısa sürede size dönüş yapacağım.
+                    </motion.div>
+                  )}
+                  {submitStatus === "error" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-red-500/20 border border-red-500/50 text-red-300 px-4 py-3 rounded-lg text-center"
+                      aria-live="polite"
+                    >
+                      {submitError}
                     </motion.div>
                   )}
                 </form>
@@ -251,3 +325,5 @@ export function Contact() {
     </div>
   );
 }
+
+
