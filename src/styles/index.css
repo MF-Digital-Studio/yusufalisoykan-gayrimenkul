@@ -21,3 +21,33 @@ html {
 .animate-slow-zoom {
   animation: slowZoom 5s ease-in-out infinite;
 }
+
+@keyframes waSoftPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(37, 211, 102, 0.18));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(37, 211, 102, 0.36));
+  }
+}
+
+@keyframes waSoftBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.wa-floating {
+  animation: waSoftPulse 3.8s ease-in-out infinite, waSoftBounce 4.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-floating {
+    animation: none;
+  }
+}

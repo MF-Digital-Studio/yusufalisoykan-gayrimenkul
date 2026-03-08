@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useEffect } from "react";
+import { WhatsAppFloatingLink } from "./WhatsAppFloatingLink";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppFloatingLink />
     </div>
   );
 }

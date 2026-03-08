@@ -1,4 +1,4 @@
-import { Instagram, Linkedin, Mail, Phone, MapPin, Facebook } from "lucide-react";
+import { Instagram, Mail, Phone, MapPin, } from "lucide-react";
 import { AnimatedSection } from "./AnimatedSection";
 
 export function Footer() {
@@ -45,31 +45,13 @@ export function Footer() {
               </h4>
               <div className="flex gap-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/yusufalisoykann/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 flex items-center justify-center bg-[#0A0A0A] hover:bg-[#CFA670] transition-colors rounded-lg"
                   aria-label="Instagram"
                 >
                   <Instagram size={20} />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-[#0A0A0A] hover:bg-[#CFA670] transition-colors rounded-lg"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={20} />
-                </a>
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center bg-[#0A0A0A] hover:bg-[#CFA670] transition-colors rounded-lg"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={20} />
                 </a>
               </div>
             </div>
