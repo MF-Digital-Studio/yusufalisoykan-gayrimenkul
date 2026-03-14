@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useEffect } from "react";
 import { WhatsAppFloatingLink } from "./WhatsAppFloatingLink";
+import { CookieConsentBanner } from "./CookieConsentBanner";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <CookieConsentBanner />
       <WhatsAppFloatingLink />
     </div>
   );
