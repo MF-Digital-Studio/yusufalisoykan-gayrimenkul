@@ -1,7 +1,12 @@
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
-import { AnimatedSection, StaggerChildren, StaggerItem } from "../components/AnimatedSection";
+import {
+  AnimatedSection,
+  StaggerChildren,
+  StaggerItem,
+} from "../components/AnimatedSection";
+import ExperienceSection from "../components/ExperienceSection";
 import heroVideoFile from "../assets/hero-video.mp4";
 import aboutVideoFile from "../assets/about-video.mp4";
 
@@ -37,16 +42,24 @@ export function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             className="text-5xl md:text-7xl lg:text-8xl mb-4 font-light text-[#CFA670]"
-            style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+            style={{ fontFamily: "Barlow Condensed, sans-serif" }}
           >
             <b className="font-medium">Yusuf</b> Ali Soykan
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.5,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             className="text-md md:text-lg lg:text-xl mb-8 text-[#F8FAFC]/90"
           >
             Gayrimenkul Danışmanı
@@ -61,7 +74,10 @@ export function Home() {
               className="inline-flex items-center gap-2 bg-[#CFA670] text-[#0A0A0A] px-6 py-3 rounded-lg hover:bg-[#CFA670]/90 transition-all text-md group"
             >
               İletişime Geç
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight
+                size={20}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </motion.div>
         </div>
@@ -109,22 +125,38 @@ export function Home() {
             <AnimatedSection direction="right" className="order-1 md:order-2">
               <h2
                 className="text-4xl md:text-5xl mb-6 text-[#CFA670]"
-                style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+                style={{ fontFamily: "Barlow Condensed, sans-serif" }}
               >
                 Hakkımda
               </h2>
               <p className="text-lg text-[#F8FAFC]/80 mb-6 leading-relaxed">
-                15 yılı aşkın deneyimimle lüks gayrimenkul sektöründe, müşterilerime en prestijli konutları ve yatırım fırsatlarını sunuyorum. İstanbul'un en seçkin bölgelerinde, hayalinizdeki yaşam alanını bulmanız için profesyonel danışmanlık hizmeti veriyorum.
+                Gayrimenkul sektöründe yaklaşık 6 yıldır aktif olarak
+                çalışıyorum ve bu süreçte özellikle İstanbul Anadolu Yakası’nda
+                birçok farklı müşteriyle çalışma fırsatı buldum. Kariyerime
+                Remax Piramit Acıbadem bünyesinde başladım ve o günden beri
+                konut ve ticari gayrimenkul alanında danışmanlık hizmeti
+                veriyorum. Bu süreçte yüzlerce müşteriyle çalıştım ve her biri
+                bana bu işi daha iyi yapmayı öğreten farklı deneyimler
+                kazandırdı.
               </p>
               <p className="text-lg text-[#F8FAFC]/80 mb-8 leading-relaxed">
-                Her müşterimin kendine özgü ihtiyaçları ve beklentileri olduğunun farkındayım. Bu nedenle, size özel çözümler sunarak, gayrimenkul yolculuğunuzda güvenilir bir partner olmayı hedefliyorum.
+                İşimi yaparken en çok önem verdiğim şey güven ve doğru iletişim.
+                Her mülkün ve her müşterinin farklı bir hikâyesi olduğunu
+                biliyorum. Bu yüzden süreci sadece satış ya da kiralama olarak
+                değil, doğru insanı doğru gayrimenkulle buluşturma süreci olarak
+                görüyorum. Stratejik düşünmek, detayları gözden kaçırmamak ve
+                güçlü bir iletişim kurmak benim çalışma tarzımın en önemli
+                parçaları.
               </p>
               <Link
                 to="/hakkinda"
                 className="inline-flex items-center gap-2 text-[#CFA670] hover:gap-4 transition-all group"
               >
                 <span className="text-lg">Detaylı Bilgi</span>
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </Link>
             </AnimatedSection>
           </div>
@@ -138,14 +170,14 @@ export function Home() {
             {[
               { number: "15+", label: "Yıl Deneyim" },
               { number: "500+", label: "Mutlu Müşteri" },
-              { number: "₺2M+", label: "Toplam Satış" },
+              { number: "₺10M+", label: "Toplam Satış" },
               { number: "50+", label: "Prestij Ödüller" },
             ].map((stat, index) => (
               <StaggerItem key={index}>
                 <div className="text-center">
                   <div
                     className="text-4xl md:text-5xl mb-2 text-[#CFA670]"
-                    style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+                    style={{ fontFamily: "Barlow Condensed, sans-serif" }}
                   >
                     {stat.number}
                   </div>
@@ -156,6 +188,8 @@ export function Home() {
           </StaggerChildren>
         </div>
       </section>
+
+      <ExperienceSection />
     </div>
   );
 }

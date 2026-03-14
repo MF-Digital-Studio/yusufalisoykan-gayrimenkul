@@ -34,16 +34,29 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? "bg-[#0A0A0A]/98 backdrop-blur-md shadow-lg shadow-black/20 border-b border-[#111111]"
-        : "bg-[#0A0A0A]/80 backdrop-blur-sm border-b border-[#111111]/50"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[#0A0A0A]/98 backdrop-blur-md shadow-lg shadow-black/20 border-b border-[#111111]"
+          : "bg-[#0A0A0A]/80 backdrop-blur-sm border-b border-[#111111]/50"
+      }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-xl lg:text-2xl font-light" style={{ fontFamily: 'Barlow Condensed, sans-serif' }}>
-            <span className="text-[#CFA670]"><b className="font-medium">Yusuf</b> Ali Soykan</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/src/app/assets/remax_logo_2.png"
+              alt="RE/MAX Logo"
+              className="h-8 w-auto"
+            />
+            <span
+              className="text-xl lg:text-2xl font-light"
+              style={{ fontFamily: "EB Garamond, serif" }}
+            >
+              <span className="text-[#CFA670]">
+                <b className="font-medium">Yusuf</b> Ali Soykan
+              </span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -57,15 +70,20 @@ export function Header() {
               >
                 <Link
                   to={link.path}
-                  className={`relative transition-colors hover:text-[#CFA670] ${isActive(link.path) ? "text-[#CFA670]" : "text-[#F8FAFC]"
-                    }`}
+                  className={`relative transition-colors hover:text-[#CFA670] ${
+                    isActive(link.path) ? "text-[#CFA670]" : "text-[#F8FAFC]"
+                  }`}
                 >
                   {link.label}
                   {isActive(link.path) && (
                     <motion.div
                       layoutId="activeNav"
                       className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#CFA670]"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </Link>
@@ -102,8 +120,9 @@ export function Header() {
                 >
                   <Link
                     to={link.path}
-                    className={`block py-2 transition-colors hover:text-[#CFA670] ${isActive(link.path) ? "text-[#CFA670]" : "text-[#F8FAFC]"
-                      }`}
+                    className={`block py-2 transition-colors hover:text-[#CFA670] ${
+                      isActive(link.path) ? "text-[#CFA670]" : "text-[#F8FAFC]"
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.label}

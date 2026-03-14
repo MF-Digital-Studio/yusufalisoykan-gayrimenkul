@@ -2,19 +2,25 @@ import { Link, useParams } from "react-router";
 import { Calendar, ArrowLeft, ArrowRight } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { motion } from "motion/react";
-import { AnimatedSection, StaggerChildren, StaggerItem } from "../components/AnimatedSection";
+import {
+  AnimatedSection,
+  StaggerChildren,
+  StaggerItem,
+} from "../components/AnimatedSection";
 
 export function BlogDetail() {
   const { id } = useParams();
 
   const blogPost = {
     id: id || "1",
-    title: "2026'da İstanbul'da Lüks Konut Yatırımı: Hangi Bölgeler Öne Çıkıyor?",
+    title:
+      "2026'da İstanbul'da Lüks Konut Yatırımı: Hangi Bölgeler Öne Çıkıyor?",
     date: "5 Mart 2026",
     category: "Yatırım",
-    image: "https://images.unsplash.com/photo-1568115286680-d203e08a8be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwZW50aG91c2UlMjBjaXR5JTIwdmlld3xlbnwxfHx8fDE3NzI4NTU4OTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    image:
+      "https://images.unsplash.com/photo-1568115286680-d203e08a8be6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwZW50aG91c2UlMjBjaXR5JTIwdmlld3xlbnwxfHx8fDE3NzI4NTU4OTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
     content: `
-      <p>İstanbul, Türkiye'nin en prestijli gayrimenkul pazarı olmaya devam ediyor. 2026 yılında lüks konut segmentinde öne çıkan bölgeler, yatırımcılar için önemli fırsatlar sunuyor. Bu yazımda, 15 yıllık deneyimimle edindiğim bilgileri sizlerle paylaşacağım.</p>
+      <p>İstanbul, Türkiye'nin en prestijli gayrimenkul pazarı olmaya devam ediyor. 2026 yılında lüks konut segmentinde öne çıkan bölgeler, yatırımcılar için önemli fırsatlar sunuyor. Bu yazımda, lık deneyimimle edindiğim bilgileri sizlerle paylaşacağım.</p>
 
       <h2>Beşiktaş ve Boğaz Manzarası</h2>
       <p>Beşiktaş, özellikle Boğaz manzaralı projeleriyle lüks konut pazarının gözdesi olmaya devam ediyor. Bölgedeki yeni projeler, modern mimari ve teknoloji ile donatılmış, metrekare fiyatları 100.000 TL'yi aşan seviyelerde seyrediyor.</p>
@@ -44,27 +50,30 @@ export function BlogDetail() {
 
       <h2>Sonuç</h2>
       <p>2026 yılında İstanbul'un lüks konut pazarı, doğru bölge ve proje seçimiyle yüksek getiri potansiyeli sunuyor. Yatırım yapmadan önce detaylı araştırma yapmanız ve profesyonel destek almanız önemlidir. Benimle iletişime geçerek, size özel yatırım danışmanlığı hizmeti alabilirsiniz.</p>
-    `
+    `,
   };
 
   const relatedPosts = [
     {
       id: "2",
       title: "Ev Alırken Dikkat Edilmesi Gereken 10 Kritik Nokta",
-      image: "https://images.unsplash.com/photo-1638369022547-1c763b1b9b3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBob3VzZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MjkxNDY3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Rehber"
+      image:
+        "https://images.unsplash.com/photo-1638369022547-1c763b1b9b3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsdXh1cnklMjBob3VzZSUyMGludGVyaW9yfGVufDF8fHx8MTc3MjkxNDY3OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      category: "Rehber",
     },
     {
       id: "3",
       title: "Penthouse Yaşamı: Avantajları ve Lüks Yaşam Tarzı",
-      image: "https://images.unsplash.com/photo-1622015663319-e97e697503ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGV4dGVyaW9yfGVufDF8fHx8MTc3Mjg3NDE3Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Yaşam Tarzı"
+      image:
+        "https://images.unsplash.com/photo-1622015663319-e97e697503ee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjB2aWxsYSUyMGV4dGVyaW9yfGVufDF8fHx8MTc3Mjg3NDE3Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      category: "Yaşam Tarzı",
     },
     {
       id: "4",
       title: "Gayrimenkul Piyasasında Doğru Fiyat Belirleme Stratejileri",
-      image: "https://images.unsplash.com/photo-1703355685639-d558d1b0f63e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvciUyMGRlc2lnbnxlbnwxfHx8fDE3NzI3OTcwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-      category: "Piyasa"
+      image:
+        "https://images.unsplash.com/photo-1703355685639-d558d1b0f63e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBvZmZpY2UlMjBpbnRlcmlvciUyMGRlc2lnbnxlbnwxfHx8fDE3NzI3OTcwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+      category: "Piyasa",
     },
   ];
 
@@ -127,7 +136,7 @@ export function BlogDetail() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
               className="text-4xl md:text-5xl lg:text-6xl mb-8 text-[#F8FAFC]"
-              style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+              style={{ fontFamily: "Barlow Condensed, sans-serif" }}
             >
               {blogPost.title}
             </motion.h1>
@@ -142,7 +151,7 @@ export function BlogDetail() {
             <div
               className="prose prose-lg prose-invert max-w-none"
               style={{
-                color: '#F8FAFC',
+                color: "#F8FAFC",
               }}
             >
               <style>{`
@@ -183,17 +192,18 @@ export function BlogDetail() {
             <AnimatedSection>
               <h2
                 className="text-4xl mb-12 text-center text-[#CFA670]"
-                style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+                style={{ fontFamily: "Barlow Condensed, sans-serif" }}
               >
                 Benzer Yazılar
               </h2>
             </AnimatedSection>
-            <StaggerChildren className="grid md:grid-cols-3 gap-8" staggerDelay={0.12}>
+            <StaggerChildren
+              className="grid md:grid-cols-3 gap-8"
+              staggerDelay={0.12}
+            >
               {relatedPosts.map((post) => (
                 <StaggerItem key={post.id}>
-                  <article
-                    className="bg-[#111111] rounded-lg overflow-hidden border border-[#CFA670]/20 hover:border-[#CFA670] transition-all group hover:-translate-y-1 duration-300"
-                  >
+                  <article className="bg-[#111111] rounded-lg overflow-hidden border border-[#CFA670]/20 hover:border-[#CFA670] transition-all group hover:-translate-y-1 duration-300">
                     <div className="relative aspect-video overflow-hidden">
                       <ImageWithFallback
                         src={post.image}
@@ -209,7 +219,7 @@ export function BlogDetail() {
                     <div className="p-6">
                       <h3
                         className="text-xl mb-4 text-[#F8FAFC] group-hover:text-[#CFA670] transition-colors"
-                        style={{ fontFamily: 'Barlow Condensed, sans-serif' }}
+                        style={{ fontFamily: "Barlow Condensed, sans-serif" }}
                       >
                         {post.title}
                       </h3>
@@ -218,7 +228,10 @@ export function BlogDetail() {
                         className="inline-flex items-center gap-2 text-[#CFA670] hover:gap-4 transition-all group/link"
                       >
                         <span>Devamını Oku</span>
-                        <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
+                        <ArrowRight
+                          size={18}
+                          className="group-hover/link:translate-x-1 transition-transform"
+                        />
                       </Link>
                     </div>
                   </article>
