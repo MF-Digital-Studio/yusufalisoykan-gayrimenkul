@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 
 const GOOGLE_MAPS_LOCATION_URL =
@@ -8,11 +8,24 @@ const GOOGLE_MAPS_LOCATION_URL =
 const GOOGLE_MAPS_EMBED_URL =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.5655608708403!2d29.054530500000002!3d41.0128811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac94a19f63edb%3A0x9c21d28c81b96d58!2zUkUvTUFYIMOcc2vDvGRhciB8IFl1c3VmIFNveWthbiAtIEVtbGFrIERhbsSxxZ9tYW7EsQ!5e0!3m2!1str!2str!4v1773010421168!5m2!1str!2str";
 
+const SUBJECT_OPTIONS = [
+  "Satılık Mülk İlanı Vermek İstiyorum",
+  "Kiralık Mülk İlanı Vermek İstiyorum",
+  "Gayrimenkul Değerleme / Ekspertiz",
+  "Satın Almak İçin Danışmanlık",
+  "Kiralık Yer Arıyorum",
+  "Yatırım Fırsatları Hakkında Bilgi",
+  "Tapu ve Hukuki Süreçler",
+  "Diğer",
+] as const;
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    subject: "",
+    customSubject: "",
     message: "",
   });
 
@@ -27,9 +40,12 @@ export function Contact() {
     const name = formData.name.trim();
     const email = formData.email.trim();
     const phone = formData.phone.trim();
+    const selectedSubject = formData.subject.trim();
+    const customSubject = formData.customSubject.trim();
+    const subject = selectedSubject === "Diğer" ? customSubject : selectedSubject;
     const message = formData.message.trim();
 
-    if (!name || !email || !phone || !message) {
+    if (!name || !email || !phone || !subject || !message) {
       setSubmitStatus("error");
       setSubmitError("Lütfen zorunlu alanların tamamını doldurun.");
       return;
@@ -54,6 +70,7 @@ export function Contact() {
           name,
           email,
           phone,
+          subject,
           message,
           website: botField,
           formStartedAt,
@@ -68,7 +85,7 @@ export function Contact() {
 
       setSubmitStatus("success");
       setTimeout(() => {
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", subject: "", customSubject: "", message: "" });
         setBotField("");
         setFormStartedAt(Date.now());
         setSubmitStatus("idle");
@@ -79,10 +96,12 @@ export function Contact() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
+      ...(name === "subject" && value !== "Diğer" ? { customSubject: "" } : {}),
     });
   };
 
@@ -184,6 +203,56 @@ export function Contact() {
                       placeholder="+90 555 123 1223"
                     />
                   </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-[#F8FAFC]/90 mb-2">
+                      Konu *
+                    </label>
+                    <select
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#CFA670]/30 rounded-lg text-[#F8FAFC] focus:outline-none focus:border-[#CFA670] transition-colors"
+                    >
+                      <option value="" disabled>
+                        Konu seçiniz
+                      </option>
+                      {SUBJECT_OPTIONS.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <AnimatePresence initial={false}>
+                    {formData.subject === "Diğer" && (
+                      <motion.div
+                        key="custom-subject"
+                        initial={{ opacity: 0, y: -6, height: 0 }}
+                        animate={{ opacity: 1, y: 0, height: "auto" }}
+                        exit={{ opacity: 0, y: -6, height: 0 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <label htmlFor="customSubject" className="block text-[#F8FAFC]/90 mb-2">
+                          Özel Konu *
+                        </label>
+                        <input
+                          type="text"
+                          id="customSubject"
+                          name="customSubject"
+                          value={formData.customSubject}
+                          onChange={handleChange}
+                          required={formData.subject === "Diğer"}
+                          className="w-full px-4 py-3 bg-[#0A0A0A] border border-[#CFA670]/30 rounded-lg text-[#F8FAFC] focus:outline-none focus:border-[#CFA670] transition-colors"
+                          placeholder="Konu başlığınızı yazın"
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <div>
                     <label htmlFor="message" className="block text-[#F8FAFC]/90 mb-2">
@@ -336,4 +405,3 @@ export function Contact() {
     </div>
   );
 }
-

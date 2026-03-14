@@ -3,6 +3,7 @@ import { Resend } from "resend";
 const MIN_SUBMIT_MS = 3000;
 const MAX_NAME_LENGTH = 120;
 const MAX_PHONE_LENGTH = 40;
+const MAX_SUBJECT_LENGTH = 180;
 const MAX_MESSAGE_LENGTH = 5000;
 
 function isValidEmail(value: string): boolean {
@@ -78,11 +79,12 @@ export default async function handler(req: any, res: any) {
   const name = typeof body?.name === "string" ? body.name.trim() : "";
   const email = typeof body?.email === "string" ? body.email.trim() : "";
   const phone = typeof body?.phone === "string" ? body.phone.trim() : "";
+  const subject = typeof body?.subject === "string" ? body.subject.trim() : "";
   const message = typeof body?.message === "string" ? body.message.trim() : "";
   const website = typeof body?.website === "string" ? body.website.trim() : "";
   const formStartedAt = Number(body?.formStartedAt);
 
-  if (!name || !email || !phone || !message) {
+  if (!name || !email || !phone || !subject || !message) {
     return res.status(400).json({
       success: false,
       error: "Please fill in all required fields.",
@@ -92,6 +94,7 @@ export default async function handler(req: any, res: any) {
   if (
     name.length > MAX_NAME_LENGTH ||
     phone.length > MAX_PHONE_LENGTH ||
+    subject.length > MAX_SUBJECT_LENGTH ||
     message.length > MAX_MESSAGE_LENGTH
   ) {
     return res.status(400).json({
@@ -135,30 +138,32 @@ export default async function handler(req: any, res: any) {
   const resend = new Resend(apiKey);
 
   try {
-    const subject = `Yeni İletişim Formu Mesajı - ${name}`;
+    const mailSubject = `Yeni İletişim Formu - ${subject} (${name})`;
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safePhone = escapeHtml(phone);
+    const safeSubject = escapeHtml(subject);
     const safeMessage = escapeHtml(message).replaceAll("\n", "<br />");
 
     console.log("CONTACT API SEND ATTEMPT", {
       fromEmail: safeDebugEmail(fromEmail),
       toEmail: safeDebugEmail(toEmail),
       replyTo: safeDebugEmail(email),
-      subject,
+      subject: mailSubject,
     });
 
     const result = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
-      subject,
+      subject: mailSubject,
       replyTo: email,
       text: `Yeni iletişim formu mesajı
 
 Ad Soyad: ${name}
 E-posta: ${email}
 Telefon: ${phone}
+Konu: ${subject}
 
 Mesaj:
 ${message}`,
@@ -211,6 +216,16 @@ ${message}`,
                       Telefon
                     </div>
                     <div style="font-size:15px;color:#1f1f1f;">${safePhone}</div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <div style="padding:16px 18px;border:1px solid #ece7de;border-radius:12px;background:#faf8f4;">
+                    <div style="font-size:12px;font-weight:700;letter-spacing:0.4px;text-transform:uppercase;color:#9a7a45;margin-bottom:6px;">
+                      Konu
+                    </div>
+                    <div style="font-size:15px;color:#1f1f1f;">${safeSubject}</div>
                   </div>
                 </td>
               </tr>
@@ -274,3 +289,5 @@ ${message}`,
     });
   }
 }
+
+
