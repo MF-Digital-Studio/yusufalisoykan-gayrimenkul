@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import remaxLogo from "../assets/remax_logo_2.png";
 
 export function Header() {
   const location = useLocation();
@@ -45,7 +46,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
-              src="/src/app/assets/remax_logo_2.png"
+              src={remaxLogo}
               alt="RE/MAX Logo"
               className="h-8 w-auto"
             />
